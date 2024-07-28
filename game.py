@@ -1,8 +1,8 @@
 import random
 
-max_lines = 3
-max_bet = 100
-min_bet = 1
+MAX_LINES = 3
+MAX_BET = 100
+MIN_BET = 1
 
 rows = 3
 cols = 3
@@ -64,6 +64,8 @@ def display_slot_machine(columns):
             else:
                 print(column[row], end="")
         
+        
+
 def deposit():
     print(
         '''
@@ -98,6 +100,8 @@ def get_number_of_lines():
                 print("Please enter a valid number of lines.")
         else:
             print("Please enter a number.")
+
+    return lines
 
 def get_bet():
 
