@@ -99,3 +99,26 @@ def get_number_of_lines():
         else:
             print("Please enter a number.")
 
+def get_bet():
+
+    print(
+        '''
+        The slot machine has 3 lines with 4 Symbols, A B C & D
+        Value A will Multiply your bet by 5
+        Value B will Multiply your bet by 4
+        Value C will Multiply your bet by 3
+        Value D will Multiply your bet by 2
+        '''
+    )
+    while True:
+        amount = input("How much would you like to deposit on each line? £")
+        if amount.isdigit():
+            amount = int(amount)
+            if MIN_BET <= amount <= MAX_BET <=100:
+                break
+            else:
+                print(f"Amount must be between £{MIN_BET} - £{MAX_BET}.")
+        else:
+            print("Please enter a number.")
+
+    return amount
