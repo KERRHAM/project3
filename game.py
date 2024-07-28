@@ -144,3 +144,17 @@ def spin(balance):
     print(f"You won {winnings} Tokens!!.")
     print(f"you won on lines:", *winning_lines)
     return winnings - total_bet
+
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance is £{balance}")
+        result = input("Press enter to Play (Press q to quit) ")
+        if result == "q":
+            break
+        balance += spin(balance)
+    
+    print(f"You left with {balance} Token's")
+
+
+main()
