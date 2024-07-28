@@ -21,20 +21,22 @@ symbol_value = {
     "D": 2
 }
 
-def check_winnings(columns, bets, values, lines):
+def check_winnings(columns, lines, bet, values):
     winnings = 0
     winning_lines = []
-    for lines in range(lines):
+    for line in range(lines):
         symbol = columns[0][line]
-        for columns in column:
+        for column in columns:
             symbol_to_check = column[line]
             if symbol != symbol_to_check:
                 break
         else:
             winnings += values[symbol] * bet
             winning_lines.append(line + 1)
-        
-            return winnings, winning_lines
+
+
+    return winnings, winning_lines
+
 
 def spin_slot_machine(rows, cols, symbols):
     all_symbols = []
@@ -64,7 +66,7 @@ def display_slot_machine(columns):
             else:
                 print(column[row], end="")
         
-        
+        print()
 
 def deposit():
     print(
@@ -151,7 +153,7 @@ def spin(balance):
 
 def main():
     balance = deposit()
-    while True:
+    while balance >= 1:
         print(f"Current balance is £{balance}")
         result = input("Press enter to Play (Press q to quit) ")
         if result == "q":
@@ -159,6 +161,6 @@ def main():
         balance += spin(balance)
     
     print(f"You left with {balance} Token's")
-
-
+    print("To play again, Click run to deposit more funds!!")
+    
 main()
