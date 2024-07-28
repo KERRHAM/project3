@@ -64,5 +64,24 @@ def display_slot_machine(columns):
             else:
                 print(column[row], end="")
         
-        
-        print()
+def deposit():
+    print(
+        '''
+        Welcome user are you ready to play the slotmachine??
+        To play deposit a minimum of £1 to win yourself some tokens!!
+        '''
+    )
+
+
+    while True:
+        amount = input("How much would you like to deposit to play? £")
+        if amount.isdigit():
+            amount = int(amount)
+            if amount > 0:
+                break
+            else:
+                print("Amount must be greater than 0.")
+        else:
+            print("Please enter a number.")
+
+    return amount
