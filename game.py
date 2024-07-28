@@ -85,3 +85,17 @@ def deposit():
             print("Please enter a number.")
 
     return amount
+
+def get_number_of_lines():
+
+    while True:
+        lines = input("Please enter the number of lines you would like to deposit your money on? (1-" + str(MAX_LINES) + ")? ")
+        if lines.isdigit():
+            lines = int(lines)
+            if 1 <= lines <= MAX_LINES:
+                break
+            else:
+                print("Please enter a valid number of lines.")
+        else:
+            print("Please enter a number.")
+
