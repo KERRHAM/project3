@@ -122,3 +122,25 @@ def get_bet():
             print("Please enter a number.")
 
     return amount
+
+
+def spin(balance):
+    lines = get_number_of_lines()
+    
+    while True:
+        bet = get_bet()
+        total_bet = bet * lines
+        
+        if total_bet > balance:
+            print(f"You dont have enough funds to place this bet, Your current balance is: £{balance}")
+        else:
+            break
+    
+    print(f"you are betting £{bet} on {lines} lines, your total bet is equal to: £{total_bet}")
+
+    slot = spin_slot_machine(rows, cols, symbol_count) 
+    display_slot_machine(slot)
+    winnings, winning_lines = check_winnings(slot, lines, bet, symbol_value)
+    print(f"You won {winnings} Tokens!!.")
+    print(f"you won on lines:", *winning_lines)
+    return winnings - total_bet
