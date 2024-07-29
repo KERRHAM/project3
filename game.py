@@ -78,7 +78,7 @@ def deposit():
 
 
     while True:
-        amount = input("How much would you like to deposit to play? £")
+        amount = input("How much would you like to deposit to play? £\n")
         if amount.isdigit():
             amount = int(amount)
             if amount > 0:
@@ -93,7 +93,7 @@ def deposit():
 def get_number_of_lines():
 
     while True:
-        lines = input("Please enter the number of lines you would like to deposit your money on? (1-" + str(MAX_LINES) + ")? ")
+        lines = input("Please enter the number of lines you would like to deposit your money on? (1-" + str(MAX_LINES) + ")?\n ")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
@@ -117,7 +117,7 @@ def get_bet():
         '''
     )
     while True:
-        amount = input("How much would you like to deposit on each line? £")
+        amount = input("How much would you like to deposit on each line? £\n")
         if amount.isdigit():
             amount = int(amount)
             if MIN_BET <= amount <= MAX_BET <=100:
