@@ -1,23 +1,25 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-
 import random
 
+# Variable for declaring maximum lines to chose from (3)
 MAX_LINES = 3
+# Variable for declaring Maximum bet for a user to deposit(£100)
 MAX_BET = 100
+# Variable for decalaring Minimum bet for a user to deposit(£1)
 MIN_BET = 1
-
+# Variable for number of rows in game (3)
 rows = 3
+# Variable for number of columns in game (3)
 cols = 3
 
+# Dicitionary for number of symbols to generate
+# 2 A's, 4 B's, 6 C's & 8 D's
 symbol_count = {
     "A": 2,
     "B": 4,
     "C": 6,
     "D": 8
 }
-
+# Dictionary for storing Value of each symbol
 symbol_value = {
     "A": 5,
     "B": 4,
@@ -25,6 +27,8 @@ symbol_value = {
     "D": 2
 }
 
+# Function for checking the rows for a sequence of 3 of the same symbols and
+# adding the number of winning lines to a list and calculating winnings
 def check_winnings(columns, lines, bet, values):
     winnings = 0
     winning_lines = []
@@ -41,7 +45,7 @@ def check_winnings(columns, lines, bet, values):
 
     return winnings, winning_lines
 
-
+# Function for generating random rows/columns of symbols
 def spin_slot_machine(rows, cols, symbols):
     all_symbols = []
     for symbol,symbol_count in symbols.items():
@@ -61,6 +65,8 @@ def spin_slot_machine(rows, cols, symbols):
 
     return columns
 
+# Function for displaying game board
+# Empty print() used to start newline after board is displayed for vertical spacing
 def display_slot_machine(columns):
 
     for row in range(len(columns[0])):
@@ -72,6 +78,8 @@ def display_slot_machine(columns):
         
         print()
 
+# Function for Depositing funds from the user to play the game and
+# for checking deposit entered is > 0 and is a number(Integer)
 def deposit():
     print(
         '''
@@ -94,6 +102,8 @@ def deposit():
 
     return amount
 
+# Function for declaring number of lines wanted by user and for checking
+# number of lines is between 1-3 and a number(integer)
 def get_number_of_lines():
 
     while True:
@@ -109,11 +119,14 @@ def get_number_of_lines():
 
     return lines
 
+# Function for user to input what funds they wish to deposit on lines chosen,
+# Function also checks if funds deposited is between 1-100 and checks if input is 
+# a number(Integer)
 def get_bet():
 
     print(
         '''
-        The slot machine has 3 lines with 4 Symbols, A B C & D
+        The slot machine has 3 lines with 4 Symbols, A B C D
         Value A will Multiply your bet by 5
         Value B will Multiply your bet by 4
         Value C will Multiply your bet by 3
@@ -133,7 +146,9 @@ def get_bet():
 
     return amount
 
-
+# Function for informing user how much they have deposited on lines requested and total bet to play,
+# Function checks to see if users next deposit is less than or equal to users balance,
+# After the game is run,the function will display number of tokens/number of lines won
 def spin(balance):
     lines = get_number_of_lines()
     
@@ -155,6 +170,9 @@ def spin(balance):
     print(f"you won on lines:", *winning_lines)
     return winnings - total_bet
 
+# Function will run while balance is more than or equal to 1,
+# If balance is less than 1 the program will terminate, The user
+# will be informed of how many tokens won and how to play again
 def main():
     balance = deposit()
     while balance >= 1:
