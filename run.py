@@ -87,8 +87,8 @@ def deposit():
         To play deposit a bottlecap to win yourself some tokens to exchange
         for any supplies needed!!
 
-        Minimum deposit is 1 and maximum is 100, a table will display with 3 lines
-        and you Must have 3 Matching symbols horizontally to win.
+        Minimum deposit is 1 and maximum is 100, a table will display with 
+        3 lines and you Must have 3 Matching symbols horizontally to win.
        
         The Vending machine has 3 lines with 4 Symbols available, A B C D
         Value A will Multiply your deposit by 5
