@@ -46,7 +46,7 @@ def check_winnings(columns, lines, bet, values):
     return winnings, winning_lines
 
 # Function for generating random rows/columns of symbols
-def spin_slot_machine(rows, cols, symbols):
+def spin_vending_machine(rows, cols, symbols):
     all_symbols = []
     for symbol,symbol_count in symbols.items():
         for _ in range(symbol_count):
@@ -67,7 +67,7 @@ def spin_slot_machine(rows, cols, symbols):
 
 # Function for displaying game board
 # Empty print() used to start newline after board is displayed for vertical spacing
-def display_slot_machine(columns):
+def display_vending_machine(columns):
 
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
@@ -83,20 +83,31 @@ def display_slot_machine(columns):
 def deposit():
     print(
         '''
-        Welcome user are you ready to play the slotmachine??
-        To play deposit a minimum of £1 to win yourself some tokens!!
+        Welcome user are you ready to play the Bottle cap vending machine?
+        To play deposit a bottlecap to win yourself some tokens to exchange
+        for any supplies needed!!
+
+        Minimum deposit is 1 and maximum is 100, a table will display with 3 lines
+        and you Must have 3 Matching symbols horizontally to win.
+       
+        The Vending machine has 3 lines with 4 Symbols available, A B C D
+        Value A will Multiply your deposit by 5
+        Value B will Multiply your deposit by 4
+        Value C will Multiply your deposit by 3
+        Value D will Multiply your deposit by 2
+        
         '''
     )
 
 
     while True:
-        amount = input("How much would you like to deposit to play? £\n")
+        amount = input("How many Bottlecaps would you like to deposit?\n")
         if amount.isdigit():
             amount = int(amount)
-            if amount > 0:
+            if amount > 0 and amount <= 100:
                 break
             else:
-                print("Amount must be greater than 0.")
+                print("Deposit must be between 1 and 100!!")
         else:
             print("Please enter a number.")
 
@@ -107,7 +118,7 @@ def deposit():
 def get_number_of_lines():
 
     while True:
-        lines = input("Please enter the number of lines you would like to deposit your money on? (1-" + str(MAX_LINES) + ")?\n ")
+        lines = input("Please enter the number of lines you would like to deposit your bottlecaps on? (1-" + str(MAX_LINES) + ")\n ")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
@@ -124,29 +135,20 @@ def get_number_of_lines():
 # a number(Integer)
 def get_bet():
 
-    print(
-        '''
-        The slot machine has 3 lines with 4 Symbols, A B C D
-        Value A will Multiply your bet by 5
-        Value B will Multiply your bet by 4
-        Value C will Multiply your bet by 3
-        Value D will Multiply your bet by 2
-        '''
-    )
     while True:
-        amount = input("How much would you like to deposit on each line? £\n")
+        amount = input("How many bottlecaps do you want to deposit on each line? £\n")
         if amount.isdigit():
             amount = int(amount)
-            if MIN_BET <= amount <= MAX_BET <=100:
+            if amount <= MIN_BET and amount <= MAX_BET:
                 break
             else:
-                print(f"Amount must be between £{MIN_BET} - £{MAX_BET}.")
+                print(f"Amount must be between {MIN_BET} - {MAX_BET} Bottlecaps.")
         else:
             print("Please enter a number.")
 
     return amount
 
-# Function for informing user how much they have deposited on lines requested and total bet to play,
+# Function for informing user how much they have deposited on lines requested and total deposit to play,
 # Function checks to see if users next deposit is less than or equal to users balance,
 # After the game is run,the function will display number of tokens/number of lines won
 def spin(balance):
@@ -157,14 +159,14 @@ def spin(balance):
         total_bet = bet * lines
         
         if total_bet > balance:
-            print(f"You dont have enough funds to place this bet, Your current balance is: £{balance}")
+            print(f"You dont have enough funds to place this deposit, Your current balance is: {balance} Bottlecaps")
         else:
             break
     
-    print(f"you are betting £{bet} on {lines} lines, your total bet is equal to: £{total_bet}")
+    print(f"you are depositing {bet} bottlecaps on {lines} lines, your total deposit is equal to: {total_bet} bottlecaps")
 
-    slot = spin_slot_machine(rows, cols, symbol_count) 
-    display_slot_machine(slot)
+    slot = spin_vending_machine(rows, cols, symbol_count) 
+    display_vending_machine(slot)
     winnings, winning_lines = check_winnings(slot, lines, bet, symbol_value)
     print(f"You won {winnings} Tokens!!.")
     print(f"you won on lines:", *winning_lines)
@@ -176,13 +178,13 @@ def spin(balance):
 def main():
     balance = deposit()
     while balance >= 1:
-        print(f"Current balance is £{balance}")
+        print(f"Current balance is {balance}  Bottle caps")
         result = input("Press enter to Play (Press q to quit) ")
         if result == "q":
             break
         balance += spin(balance)
     
-    print(f"You left with {balance} Token's")
-    print("To play again, Click run to deposit more funds!!")
+    print(f"You left with {balance} Bottle caps!")
+    print("To play again, Click run to deposit more Bottle caps!!")
     
 main()
